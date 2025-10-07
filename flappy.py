@@ -5,7 +5,7 @@ from pygame.locals import *
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
 SPEED = 10  # Bird's flap speed
-GRAVITY = 1
+GRAVITY = 3.25
 GAME_SPEED = 10
 
 GROUND_WIDTH = 2 * SCREEN_WIDTH
@@ -142,7 +142,8 @@ class FlappyBirdGame:
 
         # Check for collisions
         if (pygame.sprite.groupcollide(self.bird_group, self.ground_group, False, False, pygame.sprite.collide_mask) or
-            pygame.sprite.groupcollide(self.bird_group, self.pipe_group, False, False, pygame.sprite.collide_mask)):
+             pygame.sprite.groupcollide(self.bird_group, self.pipe_group, False, False, pygame.sprite.collide_mask) or
+             self.bird.rect.top < 0):
             self.game_over = True
             
         # Update score
